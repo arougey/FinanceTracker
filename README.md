@@ -16,6 +16,9 @@ Interest rate for student loans
 Estimate of Discretionary costs monthly (gaming, concerts, subscriptions)
 Intended state to live in
 
+Sections
+1 - First name, intended state to live in 
+
 Pages
 Input Page: page with all of the input boxes for all the possible data that could possibly be inputted. 
 Retirement Page: page with all the future retirement costs and benefits
@@ -61,4 +64,3 @@ Monthly Mortgage page: page with all possible loans to be payed off on a monthly
 - **Intuitive Navigation:** Make it easy to move between different pages and features.
 - **Clean Design:** Use a clean, minimalistic design with a focus on usability.
 - **User Feedback:** Provide real-time feedback for user interactions.
-

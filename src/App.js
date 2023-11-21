@@ -1,13 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Input from "./screens/Signup";
+import { BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Input />}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
