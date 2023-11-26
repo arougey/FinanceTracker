@@ -1,32 +1,52 @@
-import React from "react"
+import React from "react";
+import "tailwindcss/tailwind.css"; 
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import "bootstrap/dist/css/bootstrap.min.css";
-export default function Page1() {
+
+export default function Page1({formData, setFormData }) {
+
+  const handleFullNameChange = (event) => {
+    const fullNameValue = event.target.value;
+    setFormData({fullName: fullNameValue });
+  };
+
+  const handleStudentLoanAmountChange = (event) =>{
+    const studentLoanValue= event.target.value;
+    setFormData({studentLoanAmount: studentLoanValue});
+  }
+
+
+
   return (
-    <>
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="First name"
-          aria-label="Last name"
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="Expected pre-tax income"
-          aria-label="Expected income"
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Checkbox aria-label="Are your student loans deferred?" />
-        <Form.Control aria-label="Text input with checkbox" />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="If so, for how many years are they deferred?"
-          aria-label="Expected income"
-        />
-      </InputGroup>
-    </>
+    <div className="flex items-center justify-center">
+      <div className="">
+        <div className="">
+          <Form.Label htmlFor="fullName" className="block text-lg font-semibold mb-1">Full Name</Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="fullName"
+              placeholder="Enter full name here"
+              aria-label="Full name"
+              value={formData.fullName}
+              className="border rounded py-2 px-4 w-full"
+              onChange={handleFullNameChange}
+            />
+          </InputGroup>
+        </div>
+        <div className="">
+          <Form.Label htmlFor="studentLoanAmount" className="block text-lg font-semibold mb-1">Total Student Loan Amount</Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="studentLoanAmount"
+              placeholder="Enter total student loans"
+              aria-label="Deferred years"
+              value={formData.studentLoanAmount}
+              className="border rounded py-2 px-4 w-full"
+              onChange={handleStudentLoanAmountChange}
+            />
+          </InputGroup>
+        </div>
+      </div>
+    </div>
   );
 }
