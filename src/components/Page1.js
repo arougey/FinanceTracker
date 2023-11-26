@@ -6,8 +6,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 export default function Page1() {
   return (
     <div className="flex items-center justify-center">
-      <div className="w-3/5">
-        <div className="mb-3">
+      <div className="">
+        <div className="">
           <Form.Label htmlFor="first-name" className="block text-lg font-semibold mb-1">First Name</Form.Label>
           <InputGroup>
             <Form.Control
@@ -18,7 +18,7 @@ export default function Page1() {
             />
           </InputGroup>
         </div>
-        <div className="mb-3">
+        <div className="">
           <Form.Label htmlFor="expected-income" className="block text-lg font-semibold mb-1">Expected Pre-tax Income</Form.Label>
           <InputGroup>
             <Form.Control
@@ -29,7 +29,7 @@ export default function Page1() {
             />
           </InputGroup>
         </div>
-        <div className="mb-3">
+        <div className="">
           <Form.Label htmlFor="deferred" className="block text-lg font-semibold mb-1">Are your student loans deffered?</Form.Label>
           <InputGroup>
             <Form.Select
@@ -43,12 +43,12 @@ export default function Page1() {
             </Form.Select>
           </InputGroup>
         </div>
-        <div className="mb-3">
+        <div className="">
           <Form.Label htmlFor="deferred-years" className="block text-lg font-semibold mb-1">Years of Loan Deferral</Form.Label>
           <InputGroup>
             <Form.Control
               id="deferred-years"
-              placeholder="If yes, How many years are they deferred?"
+              placeholder="If yes, How many years?"
               aria-label="Deferred years"
               className="border rounded py-2 px-4 w-full"
             />
