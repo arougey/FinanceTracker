@@ -5,7 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function Page1() {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center">
       <div className="w-3/5">
         <div className="mb-3">
           <Form.Label htmlFor="first-name" className="block text-lg font-semibold mb-1">First Name</Form.Label>
@@ -48,7 +48,7 @@ export default function Page1() {
           <InputGroup>
             <Form.Control
               id="deferred-years"
-              placeholder="If yes, How many years are they deffered?"
+              placeholder="If yes, How many years are they deferred?"
               aria-label="Deferred years"
               className="border rounded py-2 px-4 w-full"
             />
