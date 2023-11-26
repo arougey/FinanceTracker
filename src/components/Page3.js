@@ -2,7 +2,26 @@ import React from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-export default function Page3() {
+export default function Page3({formData, setFormData }) {
+  const handleStateOfResidenceChange = (event) => {
+    const stateOfResidenceValue = event.target.value;
+    setFormData({stateOfResidence: stateOfResidenceValue });
+  };
+
+  const handleExpectedIncomeChange = (event) => {
+    const expectedIncomeValue = event.target.value;
+    setFormData({expectedIncome: expectedIncomeValue });
+  };
+
+  const handleDefferedChange = (event) => {
+    const defferedValue = event.target.value;
+    setFormData({deffered: defferedValue });
+  };
+
+  const handleYearsDeffered = (event) => {
+    const yearsDefferedValue = event.target.value;
+    setFormData({yearsDeffered: yearsDefferedValue });
+  };
   // An array of state abbreviations
   const stateAbbreviations = [
     "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",
@@ -15,10 +34,12 @@ export default function Page3() {
     <div className="flex items-center justify-center">
       <div className="">
         <div className="">
-          <Form.Label htmlFor="intended-state" className="block text-lg font-semibold mb-1">State of Residence</Form.Label>
+          <Form.Label htmlFor="stateOfResidence" className="block text-lg font-semibold mb-1">State of Residence</Form.Label>
           <InputGroup className="mb-3">
             <Form.Select
-              id="intended-state"
+              id="stateOfResidence"
+              value={formData.stateOfResidence}
+              onChange={handleStateOfResidenceChange}
               aria-label="Select state"
               className="border rounded py-2 px-4 w-full"
             >
@@ -30,11 +51,13 @@ export default function Page3() {
           </InputGroup>
         </div>
         <div className="">
-          <Form.Label htmlFor="expected-income" className="block text-lg font-semibold mb-1">Expected Pre-tax Income</Form.Label>
+          <Form.Label htmlFor="expectedIncome" className="block text-lg font-semibold mb-1">Expected Pre-tax Income</Form.Label>
           <InputGroup className="mb-3">
             <Form.Control
-              id="expected-income"
+              id="expectedIncome"
               placeholder="Enter expected pre-tax income"
+              value={formData.expectedIncome}
+              onChange={handleExpectedIncomeChange}
               aria-label="Expected income"
               className="border rounded py-2 px-4 w-full"
             />
@@ -44,8 +67,11 @@ export default function Page3() {
           <Form.Label htmlFor="deferred" className="block text-lg font-semibold mb-1">Are your student loans deferred?</Form.Label>
           <InputGroup>
             <Form.Select
+              id="deferred"
               aria-label="Select option"
               className="border rounded py-2 px-4 w-full"
+              value={formData.deffered}
+              onChange={handleDefferedChange}
               defaultValue=""
             >
               <option value="" disabled>Select option</option>
@@ -55,10 +81,12 @@ export default function Page3() {
           </InputGroup>
         </div>
         <div className="">
-          <Form.Label htmlFor="deferred-years" className="block text-lg font-semibold mb-1">Years of Loan Deferral</Form.Label>
+          <Form.Label htmlFor="yearsDeffered" className="block text-lg font-semibold mb-1">Years of Loan Deferral</Form.Label>
           <InputGroup>
             <Form.Control
-              id="deferred-years"
+              id="yearsDeffered"
+              value={formData.yearsDeffered}
+              onChange={handleYearsDeffered}
               placeholder="If yes, How many years?"
               aria-label="Deferred years"
               className="border rounded py-2 px-4 w-full"

@@ -7,10 +7,21 @@ import ProgressBar from '../components/ProgressBar';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    fullName: '',
+    studentLoanAmount: '',
+    paymentOption: '',
+    monthlyRent: '',
+    monthlyPets: '',
+    monthlyPets: '',
+    monthlyGroceries: '',
+    monthlyVehicle: '',
+    monthlyInternet: '',
+    monthlyDiscretionary: '',
+    stateOfResidence: '',
+    expectedIncome: '',
+    deffered: '',
+    yearsDeffered: ''
+
   });
 
   const pageComponents = [Page1, Page2, Page3, Page4];
@@ -27,6 +38,10 @@ const SignUpForm = () => {
     setCurrentPage(currentPage - 1);
   };
 
+  const updateFormData = (newData) => {
+    setFormData({ ...formData, ...newData });
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-3/5 mx-auto">
       {/* dont want progress bar or buttons showin on page 4 - page four should display info from the first bit then options for data vis */}
@@ -42,7 +57,7 @@ const SignUpForm = () => {
 
       {React.createElement(pageComponents[currentPage - 1], {
         formData,
-        setFormData,
+        setFormData: updateFormData,
       })}
 
       <div className="mt-4 flex gap-4">
