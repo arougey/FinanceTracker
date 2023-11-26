@@ -8,47 +8,22 @@ export default function Page1() {
     <div className="flex items-center justify-center">
       <div className="">
         <div className="">
-          <Form.Label htmlFor="first-name" className="block text-lg font-semibold mb-1">First Name</Form.Label>
+          <Form.Label htmlFor="full-name" className="block text-lg font-semibold mb-1">Full Name</Form.Label>
           <InputGroup>
             <Form.Control
-              id="first-name"
-              placeholder="Enter first name here"
-              aria-label="First name"
+              id="full-name"
+              placeholder="Enter full name here"
+              aria-label="Full name"
               className="border rounded py-2 px-4 w-full"
             />
           </InputGroup>
         </div>
         <div className="">
-          <Form.Label htmlFor="expected-income" className="block text-lg font-semibold mb-1">Expected Pre-tax Income</Form.Label>
-          <InputGroup>
-            <Form.Control
-              id="expected-income"
-              placeholder="Enter expected pre-tax income here"
-              aria-label="Expected income"
-              className="border rounded py-2 px-4 w-full"
-            />
-          </InputGroup>
-        </div>
-        <div className="">
-          <Form.Label htmlFor="deferred" className="block text-lg font-semibold mb-1">Are your student loans deffered?</Form.Label>
-          <InputGroup>
-            <Form.Select
-              aria-label="Select option"
-              className="border rounded py-2 px-4 w-full"
-              defaultValue=""
-            >
-              <option value="" disabled>Select option</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </Form.Select>
-          </InputGroup>
-        </div>
-        <div className="">
-          <Form.Label htmlFor="deferred-years" className="block text-lg font-semibold mb-1">Years of Loan Deferral</Form.Label>
+          <Form.Label htmlFor="total-loans" className="block text-lg font-semibold mb-1">Total Student Loan Amount</Form.Label>
           <InputGroup>
             <Form.Control
               id="deferred-years"
-              placeholder="If yes, How many years?"
+              placeholder="Enter total student loans"
               aria-label="Deferred years"
               className="border rounded py-2 px-4 w-full"
             />
