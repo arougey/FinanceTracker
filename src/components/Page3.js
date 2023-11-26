@@ -1,53 +1,32 @@
-// import React from "react"
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import "bootstrap/dist/css/bootstrap.min.css";
-// export default function Page3() {
-//   return (
-//     <>
-//       <InputGroup className="mb-3">
-//         <Form.Control
-//           placeholder="Intended state"
-//           aria-label="Last name"
-//         />
-//       </InputGroup>
-//       <InputGroup className="mb-3">
-//         <Form.Control
-//           placeholder="Expected pre-tax income"
-//           aria-label="Expected income"
-//         />
-//       </InputGroup>
-//       <InputGroup className="mb-3">
-//         <InputGroup.Checkbox aria-label="Are your student loans deferred?" />
-//         <Form.Control aria-label="Text input with checkbox" />
-//       </InputGroup>
-//       <InputGroup className="mb-3">
-//         <Form.Control
-//           placeholder="If so, for how many years are they deferred?"
-//           aria-label="Expected income"
-//         />
-//       </InputGroup>
-//     </>
-//   );
-// }
-
 import React from "react";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function Page3() {
+  // An array of state abbreviations
+  const stateAbbreviations = [
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",
+    "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
+    "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
+    "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+  ];
+
   return (
     <div className="flex items-center justify-center">
       <div className="">
         <div className="">
-          <Form.Label htmlFor="intended-state" className="block text-lg font-semibold mb-1">Intended State</Form.Label>
+          <Form.Label htmlFor="intended-state" className="block text-lg font-semibold mb-1">State of Residence</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control
+            <Form.Select
               id="intended-state"
-              placeholder="Enter intended state"
-              aria-label="Intended state"
+              aria-label="Select state"
               className="border rounded py-2 px-4 w-full"
-            />
+            >
+              <option value="" disabled>Select intended state</option>
+              {stateAbbreviations.map((stateAbbr, index) => (
+                <option key={index} value={stateAbbr}>{stateAbbr}</option>
+              ))}
+            </Form.Select>
           </InputGroup>
         </div>
         <div className="">
@@ -62,7 +41,7 @@ export default function Page3() {
           </InputGroup>
         </div>
         <div className="">
-          <Form.Label htmlFor="deferred" className="block text-lg font-semibold mb-1">Are your student loans deffered?</Form.Label>
+          <Form.Label htmlFor="deferred" className="block text-lg font-semibold mb-1">Are your student loans deferred?</Form.Label>
           <InputGroup>
             <Form.Select
               aria-label="Select option"

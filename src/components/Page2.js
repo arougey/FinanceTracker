@@ -28,7 +28,7 @@ export default function Page2() {
               id="rent"
               placeholder="Enter monthly cost of rent"
               aria-label="Deferred years"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]" 
             />
           </InputGroup>
         </div>
@@ -39,7 +39,7 @@ export default function Page2() {
               id="pets"
               placeholder="Enter monthly pets cost"
               aria-label="Monthly pets"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]" 
             />
           </InputGroup>
         </div>
@@ -50,7 +50,7 @@ export default function Page2() {
               id="groceries"
               placeholder="Enter monthly groceries cost"
               aria-label="Monthly groceries"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]" 
             />
           </InputGroup>
         </div>
@@ -61,7 +61,7 @@ export default function Page2() {
               id="vehicle-costs"
               placeholder="Enter monthly vehicle costs"
               aria-label="Monthly vehicle costs"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]" 
             />
           </InputGroup>
         </div>
@@ -72,7 +72,7 @@ export default function Page2() {
               id="internet-costs"
               placeholder="Enter monthly internet costs"
               aria-label="Monthly internet costs"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]"
             />
           </InputGroup>
         </div>
@@ -83,7 +83,7 @@ export default function Page2() {
               id="discretionary-costs"
               placeholder="Enter monthly discretionary costs"
               aria-label="Monthly discretionary costs"
-              className="border rounded py-2 px-4 w-[50%]" // Adjust the width as needed
+              className="border rounded py-2 px-4 w-[50%]" 
             />
           </InputGroup>
         </div>
