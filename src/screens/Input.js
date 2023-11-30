@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-// import ProgressBar from '../components/ProgressBar';
-import Page1 from '../components/Page1';
-import Page2 from '../components/Page2';
-import Page3 from '../components/Page3';
+import IncomeSources from '../components/input_pages/IncomeSources';
+// import ProgressBar from '../components/ProgressBar'; ????? stop chatgpt random bs
+import MonthlyExpenses from '../components/input_pages/MonthlyExpenses';
+import PersonalInfo from '../components/input_pages/PersonalInfo';
  // Import other page components as needed
 
-const SignUpForm = () => {
+const InputForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -13,7 +13,7 @@ const SignUpForm = () => {
     password: '',
   });
 
-  const pageComponents = [Page1,Page2,Page3]; // Add more page components here
+  const pageComponents = [IncomeSources,MonthlyExpenses,PersonalInfo, Savings, TotalDebts]; // Add more page components here
   const totalPages = pageComponents.length;
 
   const [currentPage, setCurrentPage] = useState(1);

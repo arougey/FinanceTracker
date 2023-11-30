@@ -1,4 +1,4 @@
-import Input from "./screens/Signup";
+import Input from "./screens/Input";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes } from "react-router";
 

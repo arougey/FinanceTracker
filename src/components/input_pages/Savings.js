@@ -2,12 +2,13 @@ import React from "react"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import "bootstrap/dist/css/bootstrap.min.css";
-export default function Page1() {
+export default function Savings() {
   return (
     <>
+    <h1>Savings</h1>
       <InputGroup className="mb-3">
         <Form.Control
-          placeholder="First name"
+          placeholder="Intended state"
           aria-label="Last name"
         />
       </InputGroup>

@@ -2,9 +2,10 @@ import React from "react"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import "bootstrap/dist/css/bootstrap.min.css";
-export default function Page3() {
+export default function TotalDebts() {
   return (
     <>
+    <h1>TotalDebts</h1>
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Intended state"
