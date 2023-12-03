@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import {
   Card,
@@ -11,7 +10,8 @@ import {
   TabPanels,
   Text,
   Title,
-  Metric
+  Metric,
+  DonutChart
 } from "@tremor/react";
 
 
@@ -46,7 +46,7 @@ export default function Page4({formData, setFormData }){
     { name: 'Rent', value: rentAmount },
   ];
 
-    
+  const valueFormatter = (number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
     const UserInfoBox = ({ formData }) => {
         const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
         const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
@@ -74,7 +74,7 @@ export default function Page4({formData, setFormData }){
 
       return(
         
-
+        
 
         <div> 
           <main className="p-12">
@@ -96,7 +96,7 @@ export default function Page4({formData, setFormData }){
                       </Card>
                       <Card>
                         <Text> Vehicle:</Text>
-                        <Metric>${studentLoanAmount}</Metric>
+                        <Metric>${vehicleAmount}</Metric>
                         <div className="h-28" />
                       </Card>
                       <Card>
@@ -124,7 +124,14 @@ export default function Page4({formData, setFormData }){
                     </Grid>
                     <div className="mt-6">
                       <Card>
-                        <div className="h-80" />
+                      <DonutChart
+                        className="mt-6"
+                        data={data01}
+                        category="value"
+                        index="name"
+                        valueFormatter={valueFormatter}
+                        colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
+                      />
                       </Card>
                     </div>
                   </TabPanel>
@@ -138,11 +145,7 @@ export default function Page4({formData, setFormData }){
                 </TabPanels>
               </TabGroup>
           </main>
-      
-          <PieChart width={730} height={250}>
-            <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50}   labelLine={true} fill="#8884d8" />
-            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} Label="name" fill="#82ca9d" />
-        </PieChart>
+    
 
         </div>
         );
