@@ -27,6 +27,11 @@ export default function Page4({formData, setFormData }){
     const internetAmount = parseInt(monthlyInternet, 10) || 0;
     const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
     const rentAmount = parseInt(monthlyRent, 10) || 0;
+    const studentLoansAmount = parseInt(studentLoanAmount, 10) || 0;
+   
+    var needsAmount = studentLoansAmount + groceriesAmount + internetAmount + vehicleAmount + rentAmount
+    const wantsAmount = discretionaryAmount
+    const budgetAmount = 1.25 * (needsAmount - wantsAmount) 
 
   const data01 = [
     { name: 'Groceries', value: groceriesAmount },
@@ -79,12 +84,12 @@ export default function Page4({formData, setFormData }){
         <div> 
           <main className="p-12">
               <Title>{full_Name}'s Dashboard</Title>
-              <Text>Here is the financial information that you have provided us regarding your current expenses</Text>
 
               <TabGroup className="mt-6">
                 <TabList>
                   <Tab>Overview</Tab>
-                  <Tab>Detail</Tab>
+                  <Tab>Monthly Savings</Tab>
+                  <Tab>Student Loan Payoff</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -136,9 +141,28 @@ export default function Page4({formData, setFormData }){
                     </div>
                   </TabPanel>
                   <TabPanel>
+                  <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
+                      <Card>
+                        <Text>Nees:</Text>
+                        <Metric>${needsAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>     
+                      <Card>
+                        <Text>Wants:</Text>
+                        <Metric>${wantsAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>     
+                    </Grid>
                     <div className="mt-6">
                       <Card>
-                        <div className="h-96" />
+                      <DonutChart
+                        className="mt-6"
+                        data={data01}
+                        category="value"
+                        index="name"
+                        valueFormatter={valueFormatter}
+                        colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
+                      />
                       </Card>
                     </div>
                   </TabPanel>
