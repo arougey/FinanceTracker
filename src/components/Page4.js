@@ -1,7 +1,6 @@
 import React, { PureComponent, useState  } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Form, InputGroup, Button } from 'react-bootstrap'
-import { Card, Title, BarChart } from "@tremor/react";
 
 import {
   Card,
@@ -14,7 +13,8 @@ import {
   Text,
   Title,
   Metric,
-  DonutChart
+  DonutChart,
+  BarChart
 } from "@tremor/react";
 
 
@@ -29,7 +29,7 @@ export default function Page4({formData, setFormData }){
   const handleButtonClick = () => {
     console.log('Interest Rate:', interestRate);
   };
-
+  //var finalArray= [];
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
     const valueLoanAmount= parseInt(loanAmount, 10) ||0;
     const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
@@ -48,17 +48,23 @@ export default function Page4({formData, setFormData }){
       var newLoanAmount= paymentsArray[i] - principal;
       console.log(newLoanAmount)
       //push new loan amount to array
-      paymentsArray.push(parseFloat(newLoanAmount.toPrecision(3)));
-    }
-    console.log(paymentsArray);
-    var finalArray= []
-    for(let i= 0; i< (numberYears * 12); i++){
-      if(i % 12 == 0){
-        finalArray.push(paymentsArray[i])
+      if(newLoanAmount > 0){
+        paymentsArray.push(parseFloat(newLoanAmount.toPrecision(3)));
       }
     }
-    console.log(finalArray)
+    console.log(paymentsArray);
+    return paymentsArray;
+    // for(let i= 0; i< (numberYears * 12); i++){
+    //   if(i % 12 == 0){
+    //     finalArray.push(paymentsArray[i])
+    //   }
+    // }
+    // console.log(finalArray)
     //continue -- combine i%12 logic
+  }
+
+  const calculateChartData = () => {
+    var finalArray= calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount);
     const chartData = [];
     for (let i = 0; i < finalArray.length; i++) {
       chartData.push({
@@ -66,10 +72,8 @@ export default function Page4({formData, setFormData }){
         remainingBalance: finalArray[i],
       });
     }
-
-    console.log(chartData)
     return chartData;
-  }
+  };
 
   const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
   console.log(formData);
@@ -192,32 +196,27 @@ export default function Page4({formData, setFormData }){
                   <TabPanel>
                     <div className="mt-6">
                       <Card>
-                      <Form.Label htmlFor="interestRate" className="block text-lg font-semibold mb-1">Student Loan Payment Amount </Form.Label>
+                      <Form.Label htmlFor="interestRate" className="block text-lg font-semibold mb-1">Enter Student Loan Interest Rate</Form.Label>
                       <InputGroup>
                         <Form.Control
                           id="interestRate"
-                          placeholder="Enter Interest Rate Amount"
+                          placeholder="Interest Rate"
                           aria-label="Interest Rate"
                           value={interestRate}
                           onChange={handleInterestRateChange}
                           className="border rounded py-2 px-4 w-full"
                         />
                       </InputGroup>
-                      <Button variant="primary" className="mt-3" onClick={handleButtonClick}>Submit</Button>
-                        <p>interest rate: {interestRate}</p>
-                        <p>student loan amount: {studentLoanAmount}</p>
-                        <p>payment option: {paymentOption}</p>
-                        <p>payment amount: {paymentAmount}</p>
                         {/* create an array filled with how the loan balance decreases over time
                         populate that into a bar chart. take into account taxes, pie chart for paid off vs not paid off , text for student lonad,
                         get how long the payment period is for*/}
 
                         {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
-                        <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p>
+                        {/* <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p> */}
                       </Card>
                       <Card>
                         <BarChart
-                          data={calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}
+                          data={calculateChartData()}
                           index="year"
                           categories={["remainingBalance"]}
                           height="h-72"
