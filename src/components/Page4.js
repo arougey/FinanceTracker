@@ -1,5 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState  } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Form, InputGroup, Button } from 'react-bootstrap'
+
 import {
   Card,
   Grid,
@@ -17,7 +19,16 @@ import {
 
 
 export default function Page4({formData, setFormData }){
-    const { fullName, studentLoanAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
+  const [interestRate, setInterestRate] = useState('');
+
+  const handleInterestRateChange = (event) => {
+    setInterestRate(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    console.log('Interest Rate:', interestRate);
+  };
+    const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
     console.log(formData);
 
     const full_Name = fullName;
@@ -84,7 +95,7 @@ export default function Page4({formData, setFormData }){
               <TabGroup className="mt-6">
                 <TabList>
                   <Tab>Overview</Tab>
-                  <Tab>Detail</Tab>
+                  <Tab>Student Loan Tracker</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -138,9 +149,25 @@ export default function Page4({formData, setFormData }){
                   <TabPanel>
                     <div className="mt-6">
                       <Card>
-                        <div className="h-96" />
+                      <Form.Label htmlFor="interestRate" className="block text-lg font-semibold mb-1">Student Loan Payment Amount </Form.Label>
+                      <InputGroup>
+                        <Form.Control
+                          id="interestRate"
+                          placeholder="Enter Interest Rate Amount"
+                          aria-label="Interest Rate"
+                          value={interestRate}
+                          onChange={handleInterestRateChange}
+                          className="border rounded py-2 px-4 w-full"
+                        />
+                      </InputGroup>
+                      <Button variant="primary" className="mt-3" onClick={handleButtonClick}>Submit</Button>
+                        <p>interest rate: {interestRate}</p>
+                        <p>student loan amount: {studentLoanAmount}</p>
+                        <p>payment option: {paymentOption}</p>
+                        <p>payment amount: {paymentAmount}</p>
                       </Card>
-                    </div>
+                    </div> 
+                    
                   </TabPanel>
                 </TabPanels>
               </TabGroup>

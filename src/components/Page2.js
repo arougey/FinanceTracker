@@ -37,6 +37,10 @@ export default function Page2({formData, setFormData }) {
     const monthlyDiscretionaryValue= event.target.value;
     setFormData({monthlyDiscretionary: monthlyDiscretionaryValue})
   }
+const handlePaymentAmount = (event)=>{
+  const paymentValue= event.target.value;
+  setFormData({paymentAmount: paymentValue})
+}
 
 
 
@@ -58,6 +62,19 @@ export default function Page2({formData, setFormData }) {
               <option value="semi-annual">Semi-Annual Payments</option>
               <option value="annual">Annual Payments</option>
             </Form.Select>
+          </InputGroup>
+        </div>
+        <div className="mb-3">
+          <Form.Label htmlFor="paymentAmount" className="block text-lg font-semibold mb-1">Student Loan Payment Amount </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="paymentAmount"
+              placeholder="Enter Payment Amount"
+              aria-label="Payment Amount"
+              value={formData.paymentAmount}
+              onChange={handlePaymentAmount}
+              className="border rounded py-2 px-4 w-full"
+            />
           </InputGroup>
         </div>
         <div className="mb-3">
