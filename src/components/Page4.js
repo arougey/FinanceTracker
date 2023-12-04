@@ -30,8 +30,6 @@ export default function Page4({formData, setFormData }){
   };
 
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
-    //principal, interestRate, numberYears, monthlyPayment
-    //calc monthly interest
     const valueLoanAmount= parseInt(loanAmount, 10) ||0;
     const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
     console.log(parseFloat(valueInterestRate).toPrecision(3))
@@ -59,7 +57,6 @@ export default function Page4({formData, setFormData }){
       }
     }
     console.log(finalArray)
-
     return paymentsArray;
   }
 
