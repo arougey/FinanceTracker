@@ -75,12 +75,7 @@ export default function Page4({formData, setFormData }){
         );
       };
 
-
-
       return(
-        
-        
-
         <div> 
           <main className="p-12">
               <Title>{full_Name}'s Dashboard</Title>
