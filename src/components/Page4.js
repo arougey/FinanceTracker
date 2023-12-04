@@ -1,9 +1,52 @@
-import React from "react";
+import React, { PureComponent } from 'react';
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import {
+  Card,
+  Grid,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Text,
+  Title,
+  Metric,
+  DonutChart
+} from "@tremor/react";
+
+
 
 export default function Page4({formData, setFormData }){
     const { fullName, studentLoanAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
     console.log(formData);
 
+    const full_Name = fullName;
+    const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
+    const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
+    const petAmount = parseInt(monthlyPets, 10) || 0;
+    const internetAmount = parseInt(monthlyInternet, 10) || 0;
+    const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
+    const rentAmount = parseInt(monthlyRent, 10) || 0;
+
+  const data01 = [
+    { name: 'Groceries', value: groceriesAmount },
+    { name: 'Vehicles', value: vehicleAmount },
+    { name: 'Pets', value: petAmount },
+    { name: 'Internet', value: internetAmount },
+    { name: 'Discretionary', value: discretionaryAmount },
+    { name: 'Rent', value: rentAmount },
+  ];
+
+  const data02 = [
+    { name: 'Groceries', value: groceriesAmount },
+    { name: 'Vehicles', value: vehicleAmount },
+    { name: 'Pets', value: petAmount },
+    { name: 'Internet', value: internetAmount },
+    { name: 'Discretionary', value: discretionaryAmount },
+    { name: 'Rent', value: rentAmount },
+  ];
+
+  const valueFormatter = (number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
     const UserInfoBox = ({ formData }) => {
         const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
         const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
@@ -17,14 +60,100 @@ export default function Page4({formData, setFormData }){
           <div className="info-box">
             <h2>{fullName}'s Information Summary</h2>
             <p>Student Loan Amount: ${studentLoanAmount}</p>
-            <p>Student Loan Payment Occurs {paymentOption}</p>
-            <p>Total Expenses: ${totalExpenses}</p>
-            <p>Expected Income: {expectedIncome}</p>
+            <p> Student Loan Payment Occurs {paymentOption}</p>
+            <p> Total Expense: ${totalExpenses}</p>
+            <p> Expected Income: {expectedIncome}</p>
+  
           </div>
+
+        
         );
       };
 
+
+
+      return(
+        
+        
+
+        <div> 
+          <main className="p-12">
+              <Title>{full_Name}'s Dashboard</Title>
+              <Text>Here is the financial information that you have provided us regarding your current expenses</Text>
+
+              <TabGroup className="mt-6">
+                <TabList>
+                  <Tab>Overview</Tab>
+                  <Tab>Detail</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                    <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
+                      <Card>
+                        <Text> Groceries:</Text>
+                        <Metric>${groceriesAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+                      <Card>
+                        <Text> Vehicle:</Text>
+                        <Metric>${vehicleAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+                      <Card>
+                        <Text> Pets:</Text>
+                        <Metric>${petAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+                      <Card>
+                        <Text> Internet:</Text>
+                        <Metric>${internetAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+                      <Card>
+                        <Text> Discretionary:</Text>
+                        <Metric>${discretionaryAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+                      <Card>
+                        <Text>Rent:</Text>
+                        <Metric>${rentAmount}</Metric>
+                        <div className="h-28" />
+                      </Card>
+            
+                      
+                    </Grid>
+                    <div className="mt-6">
+                      <Card>
+                      <DonutChart
+                        className="mt-6"
+                        data={data01}
+                        category="value"
+                        index="name"
+                        valueFormatter={valueFormatter}
+                        colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
+                      />
+                      </Card>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="mt-6">
+                      <Card>
+                        <div className="h-96" />
+                      </Card>
+                    </div>
+                  </TabPanel>
+                </TabPanels>
+              </TabGroup>
+          </main>
+    
+
+        </div>
+        );
+
+
     return(
+        
+
         <div className="flex">
         {/* Left side - User Information */}
         <div className="w-1/2 p-4">
@@ -41,4 +170,4 @@ export default function Page4({formData, setFormData }){
         </div>
       </div>
     )
-}
+    }
