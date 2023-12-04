@@ -1,6 +1,7 @@
 import React, { PureComponent, useState  } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Form, InputGroup, Button } from 'react-bootstrap'
+import { Card, Title, BarChart } from "@tremor/react";
 
 import {
   Card,
@@ -57,7 +58,17 @@ export default function Page4({formData, setFormData }){
       }
     }
     console.log(finalArray)
-    return paymentsArray;
+    //continue -- combine i%12 logic
+    const chartData = [];
+    for (let i = 0; i < finalArray.length; i++) {
+      chartData.push({
+        year: `202${i + 3}`,
+        remainingBalance: finalArray[i],
+      });
+    }
+
+    console.log(chartData)
+    return chartData;
   }
 
   const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
@@ -203,6 +214,16 @@ export default function Page4({formData, setFormData }){
 
                         {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
                         <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p>
+                      </Card>
+                      <Card>
+                        <BarChart
+                          data={calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}
+                          index="year"
+                          categories={["remainingBalance"]}
+                          height="h-72"
+                          colors={["indigo"]}
+                          marginTop="mt-4"
+                        />
                       </Card>
                     </div> 
                     
