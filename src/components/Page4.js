@@ -32,21 +32,37 @@ export default function Page4({formData, setFormData }){
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
     //principal, interestRate, numberYears, monthlyPayment
     //calc monthly interest
-    var newLoanAmount;
-    paymentsArray= [loanAmount];
+    const valueLoanAmount= parseInt(loanAmount, 10) ||0;
+    const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
+    console.log(parseFloat(valueInterestRate).toPrecision(3))
+    
+    var paymentsArray= [valueLoanAmount];
+    //20,000
     for(let i= 0; i < (numberYears * 12); i++ ){
       //1. monthly interest
-      var monthlyInterest= paymentsArray[i] * interestRate;
+      var monthlyInterest= paymentsArray[i] * valueInterestRate;
+      console.log(monthlyInterest)
       //2. principal protion of payment
-      var principal= monthlyPayment * monthlyInterest;
+      var principal= monthlyPayment - monthlyInterest;
+      console.log(principal)
       //3. update remaining loan 
-      newLoanAmount= paymentsArray[i] - principal;
+      var newLoanAmount= paymentsArray[i] - principal;
+      console.log(newLoanAmount)
       //push new loan amount to array
-      paymentsArray.push(newLoanAmount);
+      paymentsArray.push(parseFloat(newLoanAmount.toPrecision(3)));
     }
     console.log(paymentsArray);
+    var finalArray= []
+    for(let i= 0; i< (numberYears * 12); i++){
+      if(i % 12 == 0){
+        finalArray.push(paymentsArray[i])
+      }
+    }
+    console.log(finalArray)
 
+    return paymentsArray;
   }
+
   const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
   console.log(formData);
 
