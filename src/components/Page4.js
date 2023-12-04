@@ -28,8 +28,27 @@ export default function Page4({formData, setFormData }){
   const handleButtonClick = () => {
     console.log('Interest Rate:', interestRate);
   };
-    const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
-    console.log(formData);
+
+  function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
+    //principal, interestRate, numberYears, monthlyPayment
+    //calc monthly interest
+    var newLoanAmount;
+    paymentsArray= [loanAmount];
+    for(let i= 0; i < (numberYears * 12); i++ ){
+      //1. monthly interest
+      var monthlyInterest= paymentsArray[i] * interestRate;
+      //2. principal protion of payment
+      var principal= monthlyPayment * monthlyInterest;
+      //3. update remaining loan 
+      newLoanAmount= paymentsArray[i] - principal;
+      //push new loan amount to array
+      paymentsArray.push(newLoanAmount);
+    }
+    console.log(paymentsArray);
+
+  }
+  const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
+  console.log(formData);
 
     const full_Name = fullName;
     const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
@@ -165,6 +184,12 @@ export default function Page4({formData, setFormData }){
                         <p>student loan amount: {studentLoanAmount}</p>
                         <p>payment option: {paymentOption}</p>
                         <p>payment amount: {paymentAmount}</p>
+                        {/* create an array filled with how the loan balance decreases over time
+                        populate that into a bar chart. take into account taxes, pie chart for paid off vs not paid off , text for student lonad,
+                        get how long the payment period is for*/}
+
+                        {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
+                        <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p>
                       </Card>
                     </div> 
                     
