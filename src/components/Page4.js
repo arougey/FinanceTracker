@@ -26,52 +26,45 @@ export default function Page4({formData, setFormData }){
     setInterestRate(event.target.value);
   };
 
-  const handleButtonClick = () => {
-    console.log('Interest Rate:', interestRate);
-  };
-  //var finalArray= [];
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
     const valueLoanAmount= parseInt(loanAmount, 10) ||0;
     const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
     console.log(parseFloat(valueInterestRate).toPrecision(3))
     
     var paymentsArray= [valueLoanAmount];
-    //20,000
     for(let i= 0; i < (numberYears * 12); i++ ){
       //1. monthly interest
       var monthlyInterest= paymentsArray[i] * valueInterestRate;
-      console.log(monthlyInterest)
       //2. principal protion of payment
       var principal= monthlyPayment - monthlyInterest;
-      console.log(principal)
+      console.log("principal: " + principal)
       //3. update remaining loan 
       var newLoanAmount= paymentsArray[i] - principal;
-      console.log(newLoanAmount)
+      console.log("new loan amount: " + newLoanAmount)
       //push new loan amount to array
       if(newLoanAmount > 0){
-        paymentsArray.push(parseFloat(newLoanAmount.toPrecision(3)));
+        paymentsArray.push(parseFloat(newLoanAmount).toFixed(2));
       }
     }
-    console.log(paymentsArray);
+    console.log("payments arr:" + paymentsArray);
     return paymentsArray;
-    // for(let i= 0; i< (numberYears * 12); i++){
-    //   if(i % 12 == 0){
-    //     finalArray.push(paymentsArray[i])
-    //   }
-    // }
-    // console.log(finalArray)
-    //continue -- combine i%12 logic
   }
 
   const calculateChartData = () => {
+    //this works for monthly payments
     var finalArray= calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount);
     const chartData = [];
+    var count = 1;
     for (let i = 0; i < finalArray.length; i++) {
-      chartData.push({
-        year: `202${i + 3}`,
-        remainingBalance: finalArray[i],
-      });
+      if(i % 4 == 0){
+        chartData.push({
+          year: `${2023 + count}`,
+          RemainingBalance: finalArray[i],
+        });
+        count= count+1;
+      }
     }
+    console.log(chartData)
     return chartData;
   };
 
@@ -103,6 +96,9 @@ export default function Page4({formData, setFormData }){
     { name: 'Discretionary', value: discretionaryAmount },
     { name: 'Rent', value: rentAmount },
   ];
+  const dataFormatter = (number) => {
+    return "$ " + Intl.NumberFormat("us").format(number).toString();
+  };
 
   const valueFormatter = (number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
     const UserInfoBox = ({ formData }) => {
@@ -121,18 +117,11 @@ export default function Page4({formData, setFormData }){
             <p> Student Loan Payment Occurs {paymentOption}</p>
             <p> Total Expense: ${totalExpenses}</p>
             <p> Expected Income: {expectedIncome}</p>
-  
           </div>
-
-        
         );
       };
 
-
-
       return(
-        
-        
 
         <div> 
           <main className="p-12">
@@ -176,9 +165,7 @@ export default function Page4({formData, setFormData }){
                         <Text>Rent:</Text>
                         <Metric>${rentAmount}</Metric>
                         <div className="h-28" />
-                      </Card>
-            
-                      
+                      </Card>   
                     </Grid>
                     <div className="mt-6">
                       <Card>
@@ -209,7 +196,12 @@ export default function Page4({formData, setFormData }){
                       </InputGroup>
                         {/* create an array filled with how the loan balance decreases over time
                         populate that into a bar chart. take into account taxes, pie chart for paid off vs not paid off , text for student lonad,
-                        get how long the payment period is for*/}
+                        get how long the payment period is for
+                        
+                        calculate semi and annual
+
+                        
+                        */}
 
                         {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
                         {/* <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p> */}
@@ -218,7 +210,8 @@ export default function Page4({formData, setFormData }){
                         <BarChart
                           data={calculateChartData()}
                           index="year"
-                          categories={["remainingBalance"]}
+                          categories={["RemainingBalance"]}
+                          valueFormatter={dataFormatter}
                           height="h-72"
                           colors={["indigo"]}
                           marginTop="mt-4"
@@ -234,8 +227,6 @@ export default function Page4({formData, setFormData }){
 
         </div>
         );
-
-
     return(
         
 
