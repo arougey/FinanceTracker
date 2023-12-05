@@ -194,40 +194,35 @@ export default function Page4({formData, setFormData }){
               <TabGroup className="mt-6">
                 <TabList>
                   <Tab>Overview</Tab>
+                  <Tab>Budgeting Report</Tab>
                   <Tab>Student Loan Tracker</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
                     <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text> Groceries:</Text>
                         <Metric>${groceriesAmount}</Metric>
-                        <div className="h-28" />
                       </Card>
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text> Vehicle:</Text>
                         <Metric>${vehicleAmount}</Metric>
-                        <div className="h-28" />
                       </Card>
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text> Pets:</Text>
                         <Metric>${petAmount}</Metric>
-                        <div className="h-28" />
                       </Card>
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text> Internet:</Text>
                         <Metric>${internetAmount}</Metric>
-                        <div className="h-28" />
                       </Card>
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text> Discretionary:</Text>
                         <Metric>${discretionaryAmount}</Metric>
-                        <div className="h-28" />
                       </Card>
-                      <Card>
+                      <Card style={{ height: '10rem' }}>
                         <Text>Rent:</Text>
                         <Metric>${rentAmount}</Metric>
-                        <div className="h-28" />
                       </Card>   
                     </Grid>
                     <div className="mt-6">
@@ -244,6 +239,9 @@ export default function Page4({formData, setFormData }){
                     </div>
                   </TabPanel>
                   <TabPanel>
+                    <p>budeting report stuff</p>
+                  </TabPanel>
+                  <TabPanel>
                     <div className="mt-6">
                       <Card>
                       <Form.Label htmlFor="interestRate" className="block text-lg font-semibold mb-1">Enter Student Loan Interest Rate</Form.Label>
@@ -257,27 +255,6 @@ export default function Page4({formData, setFormData }){
                           className="border rounded py-2 px-4 w-full"
                         />
                       </InputGroup>
-                        {/* create an array filled with how the loan balance decreases over time
-                        populate that into a bar chart. take into account taxes, pie chart for paid off vs not paid off , text for student lonad,
-                        get how long the payment period is for
-                        
-                        calculate semi and annual
-
-                        create summary of each payment (with scroll bar)
-
-                        fix floating point math
-
-                        add costs of student loans to total cost on other pae
-
-                        break into categories and show total wants/needs breakdown
-
-                        use suggested 30/50/20 method
-
-                        show breakdown of income after tax
-
-                        */}
-
-                        {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
                         {/*implementfor semi-annual or annual payments */}
                       </Card>
                       <Card>
