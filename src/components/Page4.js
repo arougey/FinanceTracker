@@ -84,7 +84,18 @@ export default function Page4({formData, setFormData }){
     const internetAmount = parseInt(monthlyInternet, 10) || 0;
     const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
     const rentAmount = parseInt(monthlyRent, 10) || 0;
+    const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
 
+    const Needs = 0.5 * IncomeBeforeTax;
+    const NeedsValue = parseInt(Needs, 10) || 0;
+    const Wants = 0.3 * IncomeBeforeTax;
+    const WantsValue = parseInt(Wants, 10) || 0;
+    const Savings = 0.2 * IncomeBeforeTax;
+    const SavingsValue = parseInt(Savings, 10) || 0;
+
+
+
+    
   const data01 = [
     { name: 'Groceries', value: groceriesAmount },
     { name: 'Vehicles', value: vehicleAmount },
@@ -95,12 +106,9 @@ export default function Page4({formData, setFormData }){
   ];
 
   const data02 = [
-    { name: 'Groceries', value: groceriesAmount },
-    { name: 'Vehicles', value: vehicleAmount },
-    { name: 'Pets', value: petAmount },
-    { name: 'Internet', value: internetAmount },
-    { name: 'Discretionary', value: discretionaryAmount },
-    { name: 'Rent', value: rentAmount },
+    { name: 'Necessities', value: NeedsValue},
+    { name: 'Wants', value: WantsValue },
+    { name: 'Savings', value: SavingsValue },
   ];
   const dataFormatter = (number) => {
     return "$ " + Intl.NumberFormat("us").format(number).toString();
@@ -239,7 +247,35 @@ export default function Page4({formData, setFormData }){
                     </div>
                   </TabPanel>
                   <TabPanel>
-                    <p>budeting report stuff</p>
+                    <p>Budgeting</p>
+                    <o>Your overall monthly budget is calculated based on your monthly income</o>
+                    <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
+                        <Card style={{ height: '10rem' }}>
+                          <Text>Necessities:</Text>
+                          <Metric>${NeedsValue}</Metric>
+                        </Card>
+                        <Card style={{ height: '10rem' }}>
+                          <Text>Wants:</Text>
+                          <Metric>${WantsValue}</Metric>
+                        </Card>
+                        <Card style={{ height: '10rem' }}>
+                          <Text>Savings:</Text>
+                          <Metric>${WantsValue}</Metric>
+                        </Card>  
+                      </Grid>
+                      <div className="mt-6">
+                        <Card>
+                        <DonutChart
+                          className="mt-6"
+                          data={data02}
+                          category="value"
+                          index="name"
+                          valueFormatter={valueFormatter}
+                          colors={["slate", "violet", "indigo"]}
+                        />
+                        </Card>
+                      </div>
+                    
                   </TabPanel>
                   <TabPanel>
                     <div className="mt-6">
