@@ -14,9 +14,19 @@ import {
   Title,
   Metric,
   DonutChart,
-  BarChart
-} from "@tremor/react";
+  BarChart,
+  Table, 
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+  SearchSelect,
+  SearchSelectItem, 
+  ProgressCircle,
+  Flex
 
+} from "@tremor/react";
 
 
 export default function Page4({formData, setFormData }){
@@ -26,22 +36,18 @@ export default function Page4({formData, setFormData }){
     setInterestRate(event.target.value);
   };
 
+  const tableData= [];
+
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
     const valueLoanAmount= parseInt(loanAmount, 10) ||0;
     const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
-    console.log(parseFloat(valueInterestRate).toPrecision(3))
     
     var paymentsArray= [valueLoanAmount];
     for(let i= 0; i < (numberYears * 12); i++ ){
-      //1. monthly interest
       var monthlyInterest= paymentsArray[i] * valueInterestRate;
-      //2. principal protion of payment
       var principal= monthlyPayment - monthlyInterest;
-      console.log("principal: " + principal)
-      //3. update remaining loan 
       var newLoanAmount= paymentsArray[i] - principal;
-      console.log("new loan amount: " + newLoanAmount)
-      //push new loan amount to array
+
       if(newLoanAmount > 0){
         paymentsArray.push(parseFloat(newLoanAmount).toFixed(2));
       }
@@ -52,19 +58,19 @@ export default function Page4({formData, setFormData }){
 
   const calculateChartData = () => {
     //this works for monthly payments
+    //if == semi do diff, if == annual do diff
     var finalArray= calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount);
     const chartData = [];
     var count = 1;
     for (let i = 0; i < finalArray.length; i++) {
-      if(i % 4 == 0){
-        chartData.push({
-          year: `${2023 + count}`,
-          RemainingBalance: finalArray[i],
-        });
+      if(i % 4 == 0 || (i == finalArray.length -1)){
+        chartData.push({year: `${2023 + count}`, RemainingBalance: finalArray[i],});
+        tableData.push({year: `${2023 + count}`, RemainingBalance: finalArray[i],});
         count= count+1;
       }
     }
     console.log(chartData)
+    console.log(tableData)
     return chartData;
   };
 
@@ -117,6 +123,64 @@ export default function Page4({formData, setFormData }){
             <p> Student Loan Payment Occurs {paymentOption}</p>
             <p> Total Expense: ${totalExpenses}</p>
             <p> Expected Income: {expectedIncome}</p>
+          </div>
+        );
+      };
+
+      const LoanProgressCircle = ({ year, remainingBalance, totalLoanAmount }) => {
+        const percentagePaid = ((totalLoanAmount - remainingBalance) / totalLoanAmount) * 100;
+      
+        return (
+          <div className="space-y-3">
+            <p className="text-slate-500 text-sm text-center font-mono">Percentage of Student Loan Paid Off By {year}</p>
+            <Card className="max-w-sm mx-auto">
+              <Flex className="space-x-5" justifyContent="center">
+                <ProgressCircle value={percentagePaid} size="md">
+                  <span className="text-xs text-gray-700 font-medium">{`${percentagePaid.toFixed(2)}%`}</span>
+                </ProgressCircle>
+              </Flex>
+            </Card>
+          </div>
+        );
+      };
+
+      const LoanTracker = ({ data, totalLoanAmount }) => {
+        const [selectedYear, setSelectedYear] = useState(null);
+
+        const selectedData = selectedYear ? data.find((item) => item.year === selectedYear) : null;
+      
+        const handleYearChange = (selectedItem) => {
+          setSelectedYear(selectedItem);
+        };
+      
+        return (
+          <div className="flex flex-col">
+            <div className="p-4">
+              <Title>Progress Paying off Student Loan</Title>
+              <SearchSelect
+                label="Select Year"
+                placeholder="Select A Year"
+                value={selectedYear}
+                onChange={handleYearChange}
+                className="my-4"
+              >
+                {data.map((item, index) => (
+                  <SearchSelectItem key={index} value={item.year}>
+                    {item.year}
+                  </SearchSelectItem>
+                ))}
+              </SearchSelect>
+            </div>
+      
+            <div className="p-4">
+              {selectedYear && (
+                <LoanProgressCircle
+                  year={selectedYear}
+                  remainingBalance= {selectedData.RemainingBalance}
+                  totalLoanAmount={totalLoanAmount}
+                />
+              )}
+            </div>
           </div>
         );
       };
@@ -200,13 +264,25 @@ export default function Page4({formData, setFormData }){
                         
                         calculate semi and annual
 
-                        
+                        create summary of each payment (with scroll bar)
+
+                        fix floating point math
+
+                        add costs of student loans to total cost on other pae
+
+                        break into categories and show total wants/needs breakdown
+
+                        use suggested 30/50/20 method
+
+                        show breakdown of income after tax
+
                         */}
 
                         {/* calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment) */}
-                        {/* <p>{calculateMonthlyLoanPayments(studentLoanAmount, interestRate, 10, paymentAmount)}</p> */}
+                        {/*implementfor semi-annual or annual payments */}
                       </Card>
                       <Card>
+                      <Title>Loan Balance Over Time</Title>
                         <BarChart
                           data={calculateChartData()}
                           index="year"
@@ -217,8 +293,34 @@ export default function Page4({formData, setFormData }){
                           marginTop="mt-4"
                         />
                       </Card>
-                    </div> 
-                    
+                      <div className="flex">
+                          <div className="scrollable-table-container w-53 p-4">
+                          <Card className="mt-6"  style={{ width: '100%', maxHeight: '300px', overflowY: 'auto' }}>
+                            <Table>
+                              <TableHead>
+                                <TableRow>
+                                  <TableHeaderCell>Year</TableHeaderCell>
+                                  <TableHeaderCell>Remaining Balance</TableHeaderCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {tableData.map((item) => (
+                                  <TableRow key={item.year}>
+                                    <TableCell>{item.year}</TableCell>
+                                    <TableCell>
+                                      <Text>{`$${item.RemainingBalance}`}</Text>
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </Card>
+                        </div>
+                        <div  className="w-47 p-4">
+                          <LoanTracker data={tableData} totalLoanAmount={studentLoanAmount} />
+                        </div>
+                      </div> 
+                    </div>
                   </TabPanel>
                 </TabPanels>
               </TabGroup>
