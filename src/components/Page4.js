@@ -146,9 +146,8 @@ export default function Page4({formData, setFormData }){
 
       const LoanTracker = ({ data, totalLoanAmount }) => {
         const [selectedYear, setSelectedYear] = useState(null);
-
         const selectedData = selectedYear ? data.find((item) => item.year === selectedYear) : null;
-      
+    
         const handleYearChange = (selectedItem) => {
           setSelectedYear(selectedItem);
         };
