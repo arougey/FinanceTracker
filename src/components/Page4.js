@@ -29,7 +29,6 @@ import {
 
 } from "@tremor/react";
 
-
 export default function Page4({formData, setFormData }){
   const [interestRate, setInterestRate] = useState('');
 
@@ -87,15 +86,72 @@ export default function Page4({formData, setFormData }){
     const rentAmount = parseInt(monthlyRent, 10) || 0;
     const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
 
-    const Needs = 0.5 * IncomeBeforeTax;
+
+    const TaxState = stateOfResidence;
+
+  
+  var statefile = {
+    'AL': 5.0,
+    'AK': 0.0,
+    'AZ': 4.5,
+    'AR': 6.0,
+    'CA': 9.3,
+    'CO': 4.63,
+    'CT': 6.99,
+    'DE': 6.6,
+    'FL': 0.0,
+    'GA': 5.75,
+    'HI': 11.0,
+    'ID': 6.925,
+    'IL': 4.95,
+    'IN': 3.23,
+    'IA': 8.53,
+    'KS': 4.6,
+    'KY': 5.0,
+    'LA': 4.45,
+    'ME': 7.15,
+    'MD': 5.75,
+    'MA': 5.0,
+    'MI': 4.25,
+    'MN': 9.85,
+    'MS': 3.0,
+    'MO': 5.4,
+    'MT': 6.9,
+    'NE': 6.84,
+    'NV': 0.0,
+    'NH': 0.0,
+    'NJ': 10.75,
+    'NM': 4.9,
+    'NY': 8.82,
+    'NC': 5.25,
+    'ND': 2.9,
+    'OH': 4.8,
+    'OK': 5.0,
+    'OR': 9.0,
+    'PA': 3.07,
+    'RI': 5.99,
+    'SC': 7.0,
+    'SD': 0.0,
+    'TN': 0.0,
+    'TX': 0.0,
+    'UT': 4.95,
+    'VT': 8.75,
+    'VA': 5.75,
+    'WA': 0.0,
+    'WV': 6.5,
+    'WI': 7.65,
+};
+
+var StateTax = statefile[TaxState];
+
+const IncomeAfterTax = IncomeBeforeTax * (0.01 * (100 - StateTax))
+
+    const Needs = 0.5 * IncomeAfterTax;
     const NeedsValue = parseInt(Needs, 10) || 0;
-    const Wants = 0.3 * IncomeBeforeTax;
+    const Wants = 0.3 * IncomeAfterTax;
     const WantsValue = parseInt(Wants, 10) || 0;
-    const Savings = 0.2 * IncomeBeforeTax;
+    const Savings = 0.2 * IncomeAfterTax;
     const SavingsValue = parseInt(Savings, 10) || 0;
-
-
-
     
   const data01 = [
     { name: 'Groceries', value: groceriesAmount },
@@ -111,6 +167,8 @@ export default function Page4({formData, setFormData }){
     { name: 'Wants', value: WantsValue },
     { name: 'Savings', value: SavingsValue },
   ];
+
+  
   const dataFormatter = (number) => {
     return "$ " + Intl.NumberFormat("us").format(number).toString();
   };
@@ -212,6 +270,7 @@ export default function Page4({formData, setFormData }){
                       <Card style={{ height: '10rem' }}>
                         <Text> Groceries:</Text>
                         <Metric>${groceriesAmount}</Metric>
+                        
                         <ProgressCircle value={(monthlyGroceries/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
@@ -266,10 +325,12 @@ export default function Page4({formData, setFormData }){
                         <Card style={{ height: '10rem' }}>
                           <Text>Wants:</Text>
                           <Metric>${WantsValue}</Metric>
+                          <ProgressCircle value={(WantsValue/expectedIncome)*100} size="md" />
                         </Card>
                         <Card style={{ height: '10rem' }}>
                           <Text>Savings:</Text>
-                          <Metric>${WantsValue}</Metric>
+                          <Metric>${SavingsValue}</Metric>
+                          <ProgressCircle value={(SavingsValue/expectedIncome)*100} size="md" />
                         </Card>  
                       </Grid>
                       <div className="mt-6" style={{marginBottom:"30px"}}>
