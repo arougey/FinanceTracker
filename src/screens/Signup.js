@@ -20,8 +20,10 @@ const SignUpForm = () => {
     stateOfResidence: '',
     expectedIncome: '',
     deffered: '',
-    yearsDeffered: ''
-
+    yearsDeffered: '',
+    monthlyRetirementInvestment: '',
+    retirementROI: '',
+    yearsUntilRetirement: '',
   });
 
   const pageComponents = [Page1, Page2, Page3, Page4];
