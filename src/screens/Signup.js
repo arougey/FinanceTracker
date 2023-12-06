@@ -21,7 +21,6 @@ const SignUpForm = () => {
     expectedIncome: '',
     deffered: '',
     yearsDeffered: ''
-
   });
 
   const pageComponents = [Page1, Page2, Page3, Page4];
@@ -64,8 +63,8 @@ const SignUpForm = () => {
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
-          className={`px-4 py-2 border rounded ${
-            (currentPage === 1 || currentPage === 4 )? 'opacity-50 cursor-not-allowed hidden' : 'bg-gray-200 hover:bg-gray-300'
+          className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ${
+            (currentPage === 1 || currentPage === 4 )? 'opacity-50 cursor-not-allowed hidden' : 'bg-blue-200 hover:bg-blue-300'
           }`  }
         >
           Previous
@@ -73,8 +72,8 @@ const SignUpForm = () => {
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 border rounded text-black ${
-            currentPage === totalPages ? 'opacity-50 cursor-not-allowed hidden' : 'bg-gray-500 hover:bg-gray-600'
+          className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ${
+            currentPage === totalPages ? 'opacity-50 cursor-not-allowed hidden' : 'bg-blue-500 hover:bg-blue-600'
           }`}
         >
           Next

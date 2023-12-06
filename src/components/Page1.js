@@ -15,12 +15,10 @@ export default function Page1({formData, setFormData }) {
     setFormData({studentLoanAmount: studentLoanValue});
   }
 
-
-
   return (
     <div className="flex items-center justify-center">
       <div className="">
-        <div className="">
+        <div className="" style={{marginBottom:"40px"}}>
           <Form.Label htmlFor="fullName" className="block text-lg font-semibold mb-1">Full Name</Form.Label>
           <InputGroup>
             <Form.Control
@@ -33,7 +31,7 @@ export default function Page1({formData, setFormData }) {
             />
           </InputGroup>
         </div>
-        <div className="">
+        <div className="" style={{marginBottom:"40px"}}>
           <Form.Label htmlFor="studentLoanAmount" className="block text-lg font-semibold mb-1">Total Student Loan Amount</Form.Label>
           <InputGroup>
             <Form.Control

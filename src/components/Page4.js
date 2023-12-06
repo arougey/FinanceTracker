@@ -24,7 +24,8 @@ import {
   SearchSelect,
   SearchSelectItem, 
   ProgressCircle,
-  Flex
+  Flex,
+  Callout
 
 } from "@tremor/react";
 
@@ -163,7 +164,7 @@ export default function Page4({formData, setFormData }){
         return (
           <div className="flex flex-col">
             <div className="p-4">
-              <Title>Progress Paying off Student Loan</Title>
+              <Title className='text-black'>Progress Paying off Student Loan</Title>
               <SearchSelect
                 label="Select Year"
                 placeholder="Select A Year"
@@ -211,30 +212,37 @@ export default function Page4({formData, setFormData }){
                       <Card style={{ height: '10rem' }}>
                         <Text> Groceries:</Text>
                         <Metric>${groceriesAmount}</Metric>
+                        <ProgressCircle value={(monthlyGroceries/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
                         <Text> Vehicle:</Text>
                         <Metric>${vehicleAmount}</Metric>
+                        <ProgressCircle value={(monthlyVehicle/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
                         <Text> Pets:</Text>
                         <Metric>${petAmount}</Metric>
+                        <ProgressCircle value={(monthlyPets/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
                         <Text> Internet:</Text>
                         <Metric>${internetAmount}</Metric>
+                        <ProgressCircle value={(monthlyInternet/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
                         <Text> Discretionary:</Text>
                         <Metric>${discretionaryAmount}</Metric>
+                        <ProgressCircle value={(monthlyDiscretionary/(expectedIncome/12))*100} size="md" />
                       </Card>
                       <Card style={{ height: '10rem' }}>
                         <Text>Rent:</Text>
                         <Metric>${rentAmount}</Metric>
+                        <ProgressCircle value={(monthlyRent/(expectedIncome/12))*100} size="md" />
                       </Card>   
                     </Grid>
                     <div className="mt-6">
                       <Card>
+                        <Text style={{textAlign:"center"}}>Monthly Breakdown</Text>
                       <DonutChart
                         className="mt-6"
                         data={data01}
@@ -253,6 +261,7 @@ export default function Page4({formData, setFormData }){
                         <Card style={{ height: '10rem' }}>
                           <Text>Necessities:</Text>
                           <Metric>${NeedsValue}</Metric>
+                          <ProgressCircle value={(NeedsValue/expectedIncome)*100} size="md" />
                         </Card>
                         <Card style={{ height: '10rem' }}>
                           <Text>Wants:</Text>
@@ -263,7 +272,7 @@ export default function Page4({formData, setFormData }){
                           <Metric>${WantsValue}</Metric>
                         </Card>  
                       </Grid>
-                      <div className="mt-6">
+                      <div className="mt-6" style={{marginBottom:"30px"}}>
                         <Card>
                         <DonutChart
                           className="mt-6"
@@ -275,7 +284,13 @@ export default function Page4({formData, setFormData }){
                         />
                         </Card>
                       </div>
-                    
+                      <Card className="max-w-md" style={{margin:"auto"}}>
+                        <Text>Budget</Text>
+                        <Metric>Budget Feedback</Metric>
+                        <Callout className="mt-4" title="Here you go!" color="teal">
+                          By following the 50-30-20 rule, your budget will be in better shape!
+                        </Callout>
+                      </Card>
                   </TabPanel>
                   <TabPanel>
                     <div className="mt-6">
@@ -291,7 +306,6 @@ export default function Page4({formData, setFormData }){
                           className="border rounded py-2 px-4 w-full"
                         />
                       </InputGroup>
-                        {/*implementfor semi-annual or annual payments */}
                       </Card>
                       <Card>
                       <Title>Loan Balance Over Time</Title>
