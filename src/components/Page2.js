@@ -37,10 +37,19 @@ export default function Page2({formData, setFormData }) {
     const monthlyDiscretionaryValue= event.target.value;
     setFormData({monthlyDiscretionary: monthlyDiscretionaryValue})
   }
-const handlePaymentAmount = (event)=>{
+  const handlePaymentAmount = (event)=>{
   const paymentValue= event.target.value;
   setFormData({paymentAmount: paymentValue})
-}
+  }
+
+  const handleMonthlyRetirementInvestmentChange = (event)=>{
+  const monthlyRetirementValue= event.target.value;
+  setFormData({monthlyRetirementInvestment: monthlyRetirementValue})
+  }
+  const handleretirementRORChange = (event)=>{
+  const retirementRORValue= event.target.value;
+  setFormData({retirementROR: retirementRORValue})
+  }
 
 
 
@@ -151,6 +160,34 @@ const handlePaymentAmount = (event)=>{
               value={formData.monthlyDiscretionary}
               onChange={handleMonthlyDiscretionaryChange}
               aria-label="Monthly discretionary costs"
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div className="mb-3">
+          <Form.Label htmlFor="monthlyRetirementInvestment" className="block text-lg font-semibold mb-1">Monthly Retirement Investment</Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="monthlyRetirementInvestment"
+              placeholder="Enter monthly retirement investment"
+              value={formData.monthlyRetirementInvestment}
+              onChange={handleMonthlyRetirementInvestmentChange}
+              aria-label="Monthly Retirement Investment"
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div>
+        <Form.Label htmlFor="retirementROR" className="block text-lg font-semibold mb-1">
+          Enter Expected Rate of Return on Retirement Account
+        </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="retirementROR"
+              placeholder="retirementROR"
+              aria-label="retirementROR"
+              value={formData.retirementROR}
+              onChange={handleretirementRORChange}
               className="border rounded py-2 px-4 w-full"
             />
           </InputGroup>

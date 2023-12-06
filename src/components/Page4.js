@@ -14,7 +14,8 @@ import {
   Title,
   Metric,
   DonutChart,
-  BarChart
+  BarChart,
+  AreaChart,
 } from "@tremor/react";
 
 
@@ -68,7 +69,17 @@ export default function Page4({formData, setFormData }){
     return chartData;
   };
 
-  const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData;
+  //function that calculates the long term savings every year in a retirement fund with a specific interest rate and annual compounding.
+  function calculateRetirement(){
+    const savingsPerYear = []
+    for(let i=0;i<=yearsUntilRetirement;i++){
+      let amountSaved = (monthlyInvestment*12/retirementROI)*((1+retirementROI)^i-1) //calculates the amount saved every year using FV of annuity formula
+      savingsPerYear.push({year: i, amountSaved});
+    }
+    return savingsPerYear;
+  }
+
+  const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, monthlyInvestment, retirementROI, yearsUntilRetirement, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData; //add monthly investment, interest rate, years until retirement
   console.log(formData);
 
     const full_Name = fullName;
@@ -132,6 +143,7 @@ export default function Page4({formData, setFormData }){
                 <TabList>
                   <Tab>Overview</Tab>
                   <Tab>Student Loan Tracker</Tab>
+                  <Tab>Retirement Tracker</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -183,17 +195,7 @@ export default function Page4({formData, setFormData }){
                   <TabPanel>
                     <div className="mt-6">
                       <Card>
-                      <Form.Label htmlFor="interestRate" className="block text-lg font-semibold mb-1">Enter Student Loan Interest Rate</Form.Label>
-                      <InputGroup>
-                        <Form.Control
-                          id="interestRate"
-                          placeholder="Interest Rate"
-                          aria-label="Interest Rate"
-                          value={interestRate}
-                          onChange={handleInterestRateChange}
-                          className="border rounded py-2 px-4 w-full"
-                        />
-                      </InputGroup>
+                      
                         {/* create an array filled with how the loan balance decreases over time
                         populate that into a bar chart. take into account taxes, pie chart for paid off vs not paid off , text for student lonad,
                         get how long the payment period is for
@@ -218,7 +220,17 @@ export default function Page4({formData, setFormData }){
                         />
                       </Card>
                     </div> 
-                    
+                  </TabPanel>
+                  <TabPanel>
+                    <AreaChart
+                      data={calculateRetirement()}
+                      index="year"
+                      categories={["amountSaved"]}
+                      colors={["blue"]}
+                      showLegend={true}
+                      yAxisWidth={56}
+                      className="h-96 mt-8"
+                    />
                   </TabPanel>
                 </TabPanels>
               </TabGroup>
