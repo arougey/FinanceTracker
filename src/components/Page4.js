@@ -75,13 +75,13 @@ export default function Page4({formData, setFormData }){
 
   //function that calculates the long term savings every year in a retirement fund with a specific interest rate and annual compounding.
   function calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement){
-    console.log('info', monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)
-    monthlyRetirementInvestment = parseInt(monthlyRetirementInvestment);
+    let yearlyRetirementInvestment = parseInt(monthlyRetirementInvestment)*12;
     retirementROI = parseFloat(retirementROI) / 100;
     yearsUntilRetirement = parseInt(yearsUntilRetirement);
+    console.log('info', yearlyRetirementInvestment, retirementROI, yearsUntilRetirement)
     const savingsPerYear = []
-    for(let i=0;i<=yearsUntilRetirement;i++){
-      let amountSaved = (monthlyRetirementInvestment*12/retirementROI)*(Math.pow(1+retirementROI,i)-1) //calculates the amount saved every year using FV of annuity formula
+    for(let i=1;i<=yearsUntilRetirement;i++){
+      let amountSaved = (yearlyRetirementInvestment/retirementROI)*(Math.pow(1+retirementROI,i)-1) //calculates the amount saved every year using FV of annuity formula
       savingsPerYear.push({year: i, amountSaved});
     }
     console.log("savings", savingsPerYear);
