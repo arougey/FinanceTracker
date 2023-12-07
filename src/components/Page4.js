@@ -86,16 +86,6 @@ export default function Page4({ formData, setFormData }) {
     return chartData;
   };
 
-  const retirementSavings = calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)//calls the above function and gets the array above using data from the form
-
-  const full_Name = fullName;
-  const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
-  const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
-  const petAmount = parseInt(monthlyPets, 10) || 0;
-  const internetAmount = parseInt(monthlyInternet, 10) || 0;
-  const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
-  const rentAmount = parseInt(monthlyRent, 10) || 0;
-  const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
 
   //function that calculates the long term savings every year in a retirement fund with a specific interest rate and annual compounding.
   function calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement) {
@@ -111,6 +101,17 @@ export default function Page4({ formData, setFormData }) {
     console.log("savings", savingsPerYear);
     return savingsPerYear;
   }
+  const retirementSavings = calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)//calls the above function and gets the array above using data from the form
+
+  const full_Name = fullName;
+  const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
+  const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
+  const petAmount = parseInt(monthlyPets, 10) || 0;
+  const internetAmount = parseInt(monthlyInternet, 10) || 0;
+  const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
+  const rentAmount = parseInt(monthlyRent, 10) || 0;
+  const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
+
 
 
   const TaxState = stateOfResidence;
