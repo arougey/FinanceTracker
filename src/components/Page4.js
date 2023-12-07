@@ -282,8 +282,9 @@ export default function Page4({ formData, setFormData }) {
           <TabList>
             <Tab>Overview</Tab>
             <Tab>Student Loan Tracker</Tab>
-            <Tab>Retirement Tracker</Tab>
             <Tab>Budgeting Report</Tab>
+            <Tab>Retirement Tracker</Tab>
+            
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -396,23 +397,23 @@ export default function Page4({ formData, setFormData }) {
               <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
                 <Card style={{ height: '10rem' }}>
                   <Text>Necessities:</Text>
-                  <Metric>${NeedsValue / 12}</Metric>
+                  <Metric>${NeedsValue}</Metric>
                   <ProgressCircle value={(NeedsValue / expectedIncome) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Wants:</Text>
-                  <Metric>${WantsValue / 12}</Metric>
+                  <Metric>${WantsValue}</Metric>
                   <ProgressCircle value={(WantsValue / expectedIncome) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Savings:</Text>
-                  <Metric>${SavingsValue / 12}</Metric>
+                  <Metric>${SavingsValue}</Metric>
                   <ProgressCircle value={(SavingsValue / expectedIncome) * 100} size="md" />
                 </Card>
               </Grid>
               <div className="mt-6" style={{ marginBottom: "30px" }}>
                 <Card>
-                  <Title style={{ textAlign: 'center' }}>Monthly 50-30-20 Breakdown</Title>
+                  <Title style={{ textAlign: 'center' }}> 50-30-20 Breakdown</Title>
                   <DonutChart
                     className="mt-6"
                     data={data02}
@@ -431,6 +432,17 @@ export default function Page4({ formData, setFormData }) {
                 </Callout>
               </Card>
             </TabPanel>
+            <TabPanel>
+                    <AreaChart
+                      data={retirementSavings}
+                      index="year"
+                      categories={["amountSaved"]}
+                      colors={["blue"]}
+                      showLegend={true}
+                      yAxisWidth={56}
+                      className="h-96 mt-8"
+                    />
+                  </TabPanel>
           </TabPanels>
         </TabGroup>
       </main>
