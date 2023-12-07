@@ -282,8 +282,8 @@ export default function Page4({ formData, setFormData }) {
           <TabList>
             <Tab>Overview</Tab>
             <Tab>Student Loan Tracker</Tab>
-            <Tab>Retirement Tracker</Tab>
             <Tab>Budgeting Report</Tab>
+            <Tab>Retirement Tracker</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
