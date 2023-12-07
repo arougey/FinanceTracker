@@ -3,7 +3,7 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Form, InputGroup, Button } from 'react-bootstrap'
 
 import {
-  Card,
+  Card
   Grid,
   Tab,
   TabGroup,
