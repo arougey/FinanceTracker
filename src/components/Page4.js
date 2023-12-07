@@ -285,6 +285,7 @@ export default function Page4({ formData, setFormData }) {
             <Tab>Student Loan Tracker</Tab>
             <Tab>Budgeting Report</Tab>
             <Tab>Retirement Tracker</Tab>
+            <Tab>Retirement Tracker</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -432,8 +433,7 @@ export default function Page4({ formData, setFormData }) {
                 </Callout>
               </Card>
             </TabPanel>
-          </TabPanels>
-          <TabPanel>
+            <TabPanel>
                     <AreaChart
                       data={retirementSavings}
                       index="year"
@@ -443,8 +443,8 @@ export default function Page4({ formData, setFormData }) {
                       yAxisWidth={56}
                       className="h-96 mt-8"
                     />
-                  </TabPanel>
-        </TabGroup>
+            </TabPanel>
+          </TabPanels>
       </main>
     </div>
   );
