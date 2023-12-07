@@ -27,10 +27,14 @@ export default function Page4({formData, setFormData }){
     setInterestRate(event.target.value);
   };
 
+  const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, monthlyRetirementInvestment, retirementROI, yearsUntilRetirement, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData; 
+  console.log(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement);
+
+
   function calculateMonthlyLoanPayments(loanAmount, interestRate, numberYears, monthlyPayment){
     const valueLoanAmount= parseInt(loanAmount, 10) ||0;
     const valueInterestRate= parseFloat(interestRate / 100).toPrecision(3) / 12;
-    console.log(parseFloat(valueInterestRate).toPrecision(3))
+    //console.log(parseFloat(valueInterestRate).toPrecision(3))
     
     var paymentsArray= [valueLoanAmount];
     for(let i= 0; i < (numberYears * 12); i++ ){
@@ -38,16 +42,16 @@ export default function Page4({formData, setFormData }){
       var monthlyInterest= paymentsArray[i] * valueInterestRate;
       //2. principal protion of payment
       var principal= monthlyPayment - monthlyInterest;
-      console.log("principal: " + principal)
+      //console.log("principal: " + principal)
       //3. update remaining loan 
       var newLoanAmount= paymentsArray[i] - principal;
-      console.log("new loan amount: " + newLoanAmount)
+      //console.log("new loan amount: " + newLoanAmount)
       //push new loan amount to array
       if(newLoanAmount > 0){
         paymentsArray.push(parseFloat(newLoanAmount).toFixed(2));
       }
     }
-    console.log("payments arr:" + paymentsArray);
+    //console.log("payments arr:" + paymentsArray);
     return paymentsArray;
   }
 
@@ -65,22 +69,26 @@ export default function Page4({formData, setFormData }){
         count= count+1;
       }
     }
-    console.log(chartData)
+    //console.log(chartData)
     return chartData;
   };
 
   //function that calculates the long term savings every year in a retirement fund with a specific interest rate and annual compounding.
-  function calculateRetirement(){
+  function calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement){
+    console.log('info', monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)
+    monthlyRetirementInvestment = parseInt(monthlyRetirementInvestment);
+    retirementROI = parseFloat(retirementROI) / 100;
+    yearsUntilRetirement = parseInt(yearsUntilRetirement);
     const savingsPerYear = []
     for(let i=0;i<=yearsUntilRetirement;i++){
-      let amountSaved = (monthlyInvestment*12/retirementROI)*((1+retirementROI)^i-1) //calculates the amount saved every year using FV of annuity formula
+      let amountSaved = (monthlyRetirementInvestment*12/retirementROI)*(Math.pow(1+retirementROI,i)-1) //calculates the amount saved every year using FV of annuity formula
       savingsPerYear.push({year: i, amountSaved});
     }
+    console.log("savings", savingsPerYear);
     return savingsPerYear;
   }
 
-  const { fullName, studentLoanAmount, paymentAmount, paymentOption, monthlyPets, monthlyGroceries, monthlyVehicle, monthlyInternet, monthlyRent, monthlyDiscretionary, monthlyInvestment, retirementROI, yearsUntilRetirement, stateOfResidence, expectedIncome, deffered, yearsDeffered} = formData; //add monthly investment, interest rate, years until retirement
-  console.log(formData);
+  const retirementSavings = calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)//calls the above function and gets the array above using data from the form
 
     const full_Name = fullName;
     const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
@@ -223,7 +231,7 @@ export default function Page4({formData, setFormData }){
                   </TabPanel>
                   <TabPanel>
                     <AreaChart
-                      data={calculateRetirement()}
+                      data={retirementSavings}
                       index="year"
                       categories={["amountSaved"]}
                       colors={["blue"]}

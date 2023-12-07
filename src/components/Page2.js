@@ -43,14 +43,19 @@ export default function Page2({formData, setFormData }) {
   }
 
   const handleMonthlyRetirementInvestmentChange = (event)=>{
-  const monthlyRetirementValue= event.target.value;
-  setFormData({monthlyRetirementInvestment: monthlyRetirementValue})
-  }
-  const handleretirementRORChange = (event)=>{
-  const retirementRORValue= event.target.value;
-  setFormData({retirementROR: retirementRORValue})
+  const monthlyRetirementInvestmentValue= event.target.value;
+  setFormData({monthlyRetirementInvestment: monthlyRetirementInvestmentValue})
   }
 
+  const handleRetirementROIChange = (event)=>{
+  const retirementROIValue= event.target.value;
+  setFormData({retirementROI: retirementROIValue})
+  }
+
+  const handleYearsUntilRetirementChange = (event)=>{
+    const yearsUntilRetirementValue = event.target.value;
+    setFormData({yearsUntilRetirement: yearsUntilRetirementValue})
+    }
 
 
   return (
@@ -186,8 +191,23 @@ export default function Page2({formData, setFormData }) {
               id="retirementROR"
               placeholder="retirementROR"
               aria-label="retirementROR"
-              value={formData.retirementROR}
-              onChange={handleretirementRORChange}
+              value={formData.retirementROI}
+              onChange={handleRetirementROIChange}
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div>
+        <Form.Label htmlFor="yearsUntilRetirement" className="block text-lg font-semibold mb-1">
+          Enter Years Until Retirement
+        </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="yearsUntilRetirement"
+              placeholder="Yrs Until Retirement"
+              aria-label="yrsuntilretirement"
+              value={formData.yearsUntilRetirement}
+              onChange={handleYearsUntilRetirementChange}
               className="border rounded py-2 px-4 w-full"
             />
           </InputGroup>
