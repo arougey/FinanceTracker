@@ -51,7 +51,7 @@ export default function Page3({formData, setFormData }) {
           </InputGroup>
         </div>
         <div className="">
-          <Form.Label htmlFor="expectedIncome" className="block text-lg font-semibold mb-1">Expected Pre-tax Income</Form.Label>
+          <Form.Label htmlFor="expectedIncome" className="block text-lg font-semibold mb-1">Expected Monthly Pre-tax Income</Form.Label>
           <InputGroup className="mb-3">
             <Form.Control
               id="expectedIncome"
