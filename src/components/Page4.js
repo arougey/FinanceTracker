@@ -3,7 +3,7 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Form, InputGroup, Button } from 'react-bootstrap'
 
 import {
-  Card
+  Card,
   Grid,
   Tab,
   TabGroup,
@@ -397,7 +397,7 @@ export default function Page4({ formData, setFormData }) {
                 <Card style={{ height: '10rem' }}>
                   <Text>Necessities:</Text>
                   <Metric>${NeedsValue / 12}</Metric>
-                  <ProgressCircle value={((NeedsValue / 12) / (expectedIncome / 12)) * 100} size="md" />
+                  <ProgressCircle value={(NeedsValue / expectedIncome) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Wants:</Text>
