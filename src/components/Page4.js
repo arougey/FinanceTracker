@@ -3,7 +3,7 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Form, InputGroup, Button } from 'react-bootstrap'
 
 import {
-  Card
+  Card,
   Grid,
   Tab,
   TabGroup,
@@ -396,17 +396,17 @@ export default function Page4({ formData, setFormData }) {
               <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
                 <Card style={{ height: '10rem' }}>
                   <Text>Necessities:</Text>
-                  <Metric>${NeedsValue / 12}</Metric>
-                  <ProgressCircle value={((NeedsValue / 12) / (expectedIncome / 12)) * 100} size="md" />
+                  <Metric>${NeedsValue}</Metric>
+                  <ProgressCircle value={((NeedsValue) / (expectedIncome / 12)) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Wants:</Text>
-                  <Metric>${WantsValue / 12}</Metric>
+                  <Metric>${WantsValue}</Metric>
                   <ProgressCircle value={(WantsValue / expectedIncome) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Savings:</Text>
-                  <Metric>${SavingsValue / 12}</Metric>
+                  <Metric>${SavingsValue}</Metric>
                   <ProgressCircle value={(SavingsValue / expectedIncome) * 100} size="md" />
                 </Card>
               </Grid>
@@ -432,6 +432,17 @@ export default function Page4({ formData, setFormData }) {
               </Card>
             </TabPanel>
           </TabPanels>
+          <TabPanel>
+                    <AreaChart
+                      data={retirementSavings}
+                      index="year"
+                      categories={["amountSaved"]}
+                      colors={["blue"]}
+                      showLegend={true}
+                      yAxisWidth={56}
+                      className="h-96 mt-8"
+                    />
+                  </TabPanel>
         </TabGroup>
       </main>
     </div>
