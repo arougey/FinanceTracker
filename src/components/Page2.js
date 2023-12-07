@@ -37,7 +37,25 @@ export default function Page2({formData, setFormData }) {
     const monthlyDiscretionaryValue= event.target.value;
     setFormData({monthlyDiscretionary: monthlyDiscretionaryValue})
   }
+  const handlePaymentAmount = (event)=>{
+  const paymentValue= event.target.value;
+  setFormData({paymentAmount: paymentValue})
+  }
 
+  const handleMonthlyRetirementInvestmentChange = (event)=>{
+  const monthlyRetirementInvestmentValue= event.target.value;
+  setFormData({monthlyRetirementInvestment: monthlyRetirementInvestmentValue})
+  }
+
+  const handleRetirementROIChange = (event)=>{
+  const retirementROIValue= event.target.value;
+  setFormData({retirementROI: retirementROIValue})
+  }
+
+  const handleYearsUntilRetirementChange = (event)=>{
+    const yearsUntilRetirementValue = event.target.value;
+    setFormData({yearsUntilRetirement: yearsUntilRetirementValue})
+    }
 
 
   return (
@@ -58,6 +76,19 @@ export default function Page2({formData, setFormData }) {
               <option value="semi-annual">Semi-Annual Payments</option>
               <option value="annual">Annual Payments</option>
             </Form.Select>
+          </InputGroup>
+        </div>
+        <div className="mb-3">
+          <Form.Label htmlFor="paymentAmount" className="block text-lg font-semibold mb-1">Student Loan Payment Amount </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="paymentAmount"
+              placeholder="Enter Payment Amount"
+              aria-label="Payment Amount"
+              value={formData.paymentAmount}
+              onChange={handlePaymentAmount}
+              className="border rounded py-2 px-4 w-full"
+            />
           </InputGroup>
         </div>
         <div className="mb-3">
@@ -134,6 +165,49 @@ export default function Page2({formData, setFormData }) {
               value={formData.monthlyDiscretionary}
               onChange={handleMonthlyDiscretionaryChange}
               aria-label="Monthly discretionary costs"
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div className="mb-3">
+          <Form.Label htmlFor="monthlyRetirementInvestment" className="block text-lg font-semibold mb-1">Monthly Retirement Investment</Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="monthlyRetirementInvestment"
+              placeholder="Enter monthly retirement investment"
+              value={formData.monthlyRetirementInvestment}
+              onChange={handleMonthlyRetirementInvestmentChange}
+              aria-label="Monthly Retirement Investment"
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div>
+        <Form.Label htmlFor="retirementROR" className="block text-lg font-semibold mb-1">
+          Enter Expected Rate of Return on Retirement Account
+        </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="retirementROR"
+              placeholder="retirementROR"
+              aria-label="retirementROR"
+              value={formData.retirementROI}
+              onChange={handleRetirementROIChange}
+              className="border rounded py-2 px-4 w-full"
+            />
+          </InputGroup>
+        </div>
+        <div>
+        <Form.Label htmlFor="yearsUntilRetirement" className="block text-lg font-semibold mb-1">
+          Enter Years Until Retirement
+        </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="yearsUntilRetirement"
+              placeholder="Yrs Until Retirement"
+              aria-label="yrsuntilretirement"
+              value={formData.yearsUntilRetirement}
+              onChange={handleYearsUntilRetirementChange}
               className="border rounded py-2 px-4 w-full"
             />
           </InputGroup>

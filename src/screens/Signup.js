@@ -9,6 +9,7 @@ const SignUpForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     studentLoanAmount: '',
+    paymentAmount:'',
     paymentOption: '',
     monthlyPets: '',
     monthlyGroceries: '',

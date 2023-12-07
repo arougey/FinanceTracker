@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css";
 
 const ProgressBar = ({ totalPages, currentPage }) => {
     return (
-      <div className="flex items-center justify-between w-full bg-gray-200 rounded overflow-hidden h-8 mt-4">
+      <div className="flex items-center justify-between w-full bg-gray-200 rounded overflow-hidden h-8 mt-4" style={{marginBottom:"40px"}}>
         {[...Array(totalPages)].map((_, index) => (
           <div
             key={index + 1}

@@ -1,9 +1,3 @@
-/* index.css */
-
-/* Import the base styles from Tailwind CSS */
-@import 'tailwindcss/base';
-
-/* Your existing CSS for the body and code elements */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -17,9 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* Import the component styles from Tailwind CSS */
-@import 'tailwindcss/components';
-
-/* Import the utility styles from Tailwind CSS */
-@import 'tailwindcss/utilities';
