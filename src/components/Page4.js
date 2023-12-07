@@ -445,6 +445,7 @@ export default function Page4({ formData, setFormData }) {
                     />
             </TabPanel>
           </TabPanels>
+        </TabGroup>
       </main>
     </div>
   );
