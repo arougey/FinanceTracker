@@ -3,6 +3,18 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function Page3({formData, setFormData }) {
+
+  const handleFullNameChange = (event) => {
+    const fullNameValue = event.target.value;
+    setFormData({fullName: fullNameValue });
+  };
+
+  const isValidNumber = (value) => {
+    const numberRegex = /^-?\d*\.?\d*$/;
+    return numberRegex.test(value) || value === "";
+  };
+
+
   const handleStateOfResidenceChange = (event) => {
     const stateOfResidenceValue = event.target.value;
     setFormData({stateOfResidence: stateOfResidenceValue });
@@ -10,6 +22,12 @@ export default function Page3({formData, setFormData }) {
 
   const handleExpectedIncomeChange = (event) => {
     const expectedIncomeValue = event.target.value;
+    if(isValidNumber(expectedIncomeValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({expectedIncome: expectedIncomeValue });
   };
 
@@ -20,6 +38,12 @@ export default function Page3({formData, setFormData }) {
 
   const handleYearsDeffered = (event) => {
     const yearsDefferedValue = event.target.value;
+    if(isValidNumber(yearsDefferedValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({yearsDeffered: yearsDefferedValue });
   };
   // An array of state abbreviations

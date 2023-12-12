@@ -10,8 +10,19 @@ export default function Page1({formData, setFormData }) {
     setFormData({fullName: fullNameValue });
   };
 
+  const isValidNumber = (value) => {
+    const numberRegex = /^-?\d*\.?\d*$/;
+    return numberRegex.test(value) || value === "";
+  };
+
   const handleStudentLoanAmountChange = (event) =>{
     const studentLoanValue= event.target.value;
+    if(isValidNumber(studentLoanValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({studentLoanAmount: studentLoanValue});
   }
 

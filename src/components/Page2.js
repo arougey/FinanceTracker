@@ -3,6 +3,12 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function Page2({formData, setFormData }) {
+
+  const isValidNumber = (value) => {
+    const numberRegex = /^-?\d*\.?\d*$/;
+    return numberRegex.test(value) || value === "";
+  };
+
   const handlePaymentOptionChange = (event) => {
     const paymentOptionValue = event.target.value;
     setFormData({paymentOption: paymentOptionValue });
@@ -10,58 +16,119 @@ export default function Page2({formData, setFormData }) {
 
   const handleMonthlyRentChange = (event) => {
     const monthlyRentValue = event.target.value;
+    if(isValidNumber(monthlyRentValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyRent: monthlyRentValue });
   };
 
   const handleMonthlyPetsChange = (event) => {
     const monthlyPetsValue = event.target.value;
+    if(isValidNumber(monthlyPetsValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyPets: monthlyPetsValue });
+
   };
 
   const handleMonthlyGroceriesChange = (event) => {
     const monthlyGroceriesValue = event.target.value;
+    if(isValidNumber(monthlyGroceriesValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyGroceries: monthlyGroceriesValue });
   };
 
   const handleMonthlyVehicleChange = (event) =>{
     const monthlyVehicleValue= event.target.value;
+    if(isValidNumber(monthlyVehicleValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyVehicle: monthlyVehicleValue})
   }
 
   const handleMonthlyInternetChange = (event) =>{
     const monthlyInternetValue= event.target.value;
+    if(isValidNumber(monthlyInternetValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyInternet: monthlyInternetValue})
   }
 
   const handleMonthlyDiscretionaryChange = (event) =>{
     const monthlyDiscretionaryValue= event.target.value;
+    if(isValidNumber(monthlyDiscretionaryValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
     setFormData({monthlyDiscretionary: monthlyDiscretionaryValue})
   }
   const handlePaymentAmount = (event)=>{
-  const paymentValue= event.target.value;
-  setFormData({paymentAmount: paymentValue})
+    const paymentValue= event.target.value;
+    if(isValidNumber(paymentValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
+    setFormData({paymentAmount: paymentValue})
   }
 
   const handleMonthlyRetirementInvestmentChange = (event)=>{
-  const monthlyRetirementInvestmentValue= event.target.value;
-  setFormData({monthlyRetirementInvestment: monthlyRetirementInvestmentValue})
+    const monthlyRetirementInvestmentValue= event.target.value;
+    if(isValidNumber(monthlyRetirementInvestmentValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
+    setFormData({monthlyRetirementInvestment: monthlyRetirementInvestmentValue})
   }
 
   const handleRetirementROIChange = (event)=>{
-  const retirementROIValue= event.target.value;
-  setFormData({retirementROI: retirementROIValue})
+    const retirementROIValue= event.target.value;
+    if(isValidNumber(retirementROIValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
+    }
+    setFormData({retirementROI: retirementROIValue})
   }
 
   const handleYearsUntilRetirementChange = (event)=>{
     const yearsUntilRetirementValue = event.target.value;
-    setFormData({yearsUntilRetirement: yearsUntilRetirementValue})
+    if(isValidNumber(yearsUntilRetirementValue)){
+      event.target.classList.remove("border-red-500");
+    }else{
+      event.target.classList.add("border-red-500");
+      alert(`Invalid input. Please enter a valid number (whole numbers or decimals accepted)`);
     }
+    setFormData({yearsUntilRetirement: yearsUntilRetirementValue})
+  }
 
 
   return (
     <div className="flex items-center justify-center">
       <div className="w-[60%]"> 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <Form.Label htmlFor="paymentOption" className="block text-lg font-semibold mb-1">Do you intend to pay off student loans on a monthly, semi-annual, or annual basis?</Form.Label>
           <InputGroup>
             <Form.Select
@@ -77,9 +144,9 @@ export default function Page2({formData, setFormData }) {
               <option value="annual">Annual Payments</option>
             </Form.Select>
           </InputGroup>
-        </div>
+        </div> */}
         <div className="mb-3">
-          <Form.Label htmlFor="paymentAmount" className="block text-lg font-semibold mb-1">Student Loan Payment Amount </Form.Label>
+          <Form.Label htmlFor="paymentAmount" className="block text-lg font-semibold mb-1">Monthly Student Loan Payment Amount </Form.Label>
           <InputGroup>
             <Form.Control
               id="paymentAmount"
@@ -216,3 +283,4 @@ export default function Page2({formData, setFormData }) {
     </div>
   );
 }
+
