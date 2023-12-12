@@ -86,16 +86,6 @@ export default function Page4({ formData, setFormData }) {
     return chartData;
   };
 
-  const retirementSavings = calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)//calls the above function and gets the array above using data from the form
-
-  const full_Name = fullName;
-  const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
-  const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
-  const petAmount = parseInt(monthlyPets, 10) || 0;
-  const internetAmount = parseInt(monthlyInternet, 10) || 0;
-  const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
-  const rentAmount = parseInt(monthlyRent, 10) || 0;
-  const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
 
   //function that calculates the long term savings every year in a retirement fund with a specific interest rate and annual compounding.
   function calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement) {
@@ -111,6 +101,17 @@ export default function Page4({ formData, setFormData }) {
     console.log("savings", savingsPerYear);
     return savingsPerYear;
   }
+  const retirementSavings = calculateRetirement(monthlyRetirementInvestment, retirementROI, yearsUntilRetirement)//calls the above function and gets the array above using data from the form
+
+  const full_Name = fullName;
+  const groceriesAmount = parseInt(monthlyGroceries, 10) || 0;
+  const vehicleAmount = parseInt(monthlyVehicle, 10) || 0;
+  const petAmount = parseInt(monthlyPets, 10) || 0;
+  const internetAmount = parseInt(monthlyInternet, 10) || 0;
+  const discretionaryAmount = parseInt(monthlyDiscretionary, 10) || 0;
+  const rentAmount = parseInt(monthlyRent, 10) || 0;
+  const IncomeBeforeTax = parseInt(expectedIncome, 10) || 0;
+
 
 
   const TaxState = stateOfResidence;
@@ -284,7 +285,6 @@ export default function Page4({ formData, setFormData }) {
             <Tab>Student Loan Tracker</Tab>
             <Tab>Budgeting Report</Tab>
             <Tab>Retirement Tracker</Tab>
-            
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -398,7 +398,7 @@ export default function Page4({ formData, setFormData }) {
                 <Card style={{ height: '10rem' }}>
                   <Text>Necessities:</Text>
                   <Metric>${NeedsValue}</Metric>
-                  <ProgressCircle value={(NeedsValue / expectedIncome) * 100} size="md" />
+                  <ProgressCircle value={((NeedsValue) / (expectedIncome / 12)) * 100} size="md" />
                 </Card>
                 <Card style={{ height: '10rem' }}>
                   <Text>Wants:</Text>
@@ -413,7 +413,7 @@ export default function Page4({ formData, setFormData }) {
               </Grid>
               <div className="mt-6" style={{ marginBottom: "30px" }}>
                 <Card>
-                  <Title style={{ textAlign: 'center' }}> 50-30-20 Breakdown</Title>
+                  <Title style={{ textAlign: 'center' }}>Monthly 50-30-20 Breakdown</Title>
                   <DonutChart
                     className="mt-6"
                     data={data02}
@@ -442,7 +442,7 @@ export default function Page4({ formData, setFormData }) {
                       yAxisWidth={56}
                       className="h-96 mt-8"
                     />
-                  </TabPanel>
+            </TabPanel>
           </TabPanels>
         </TabGroup>
       </main>
